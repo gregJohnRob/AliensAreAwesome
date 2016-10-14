@@ -4,7 +4,6 @@ package api;
 
 public class Message<TData> {
 
-  public int    Status;
   public String Message;
   public TData  Data;
   
