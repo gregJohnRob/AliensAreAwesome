@@ -1,8 +1,8 @@
 (function(){
   angular.$inject = ['$resource', '$location'];
-  angular.module('app').factory('gamelistService', gamelistService);
+  angular.module('app').factory('gameService', gameService);
 
-  function gamelistService($resource, $location){
+  function gameService($resource, $location){
     var service = {
 
     };
