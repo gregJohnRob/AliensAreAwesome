@@ -1,23 +1,28 @@
 package api;
 
+import java.util.UUID;
 import java.util.List;
 import java.util.LinkedList;
 
 public class Player
 {
+  private final String iId;
   private final String iName;
   private final LinkedList<String> iActiveGames;
   
   public Player(String aName)
   {
+    iId = getNewPlayerId();
     iName = aName; 
     iActiveGames = new LinkedList<String>();   
   }
   
+  public String getId()   { return iId; }
   public String getName() { return iName; }
   
   
   public synchronized List<String> getActiveGames() { return iActiveGames; }
+  
   
   public synchronized boolean addGame(String aGameId)
   {
@@ -40,5 +45,6 @@ public class Player
     
     return false;
   }
-
+   
+  private String getNewPlayerId() { return UUID.randomUUID().toString(); }
 }
