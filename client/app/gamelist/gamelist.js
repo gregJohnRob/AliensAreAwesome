@@ -3,7 +3,8 @@
   angular.module('app').controller('gamelistController', gamelistController);
   function gamelistController($routeParams, gamelistService){
     var vm = this;
-    vm. joingame = joingame;
+    vm.joingame = joingame;
+    vm.create = create;
     activate();
 
 
@@ -16,6 +17,10 @@
     function joingame(id){
       var view = "/game/"+ id;
       $location.path(view);
+    }
+
+    function create(){
+      gamelistService.create();
     }
   }
 })()

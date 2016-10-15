@@ -6,8 +6,9 @@
     var service = {login:login};
 
     return service;
-    function login(username){
-       return $resource('/Player/login/:username');
+
+    function login(){
+      return $resource('http://localhost:4567/player/login')
     }
   }
 })();
