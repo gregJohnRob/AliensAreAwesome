@@ -68,9 +68,29 @@ public class GameEndpoint
     return GameLeaveResponse.PlayerNotInGame;
   }
 
-  private Object doGameJoin(Request req, Response res) {
-    // TODO Auto-generated method stub
-    return null;
+  private Message<Boolean> doGameJoin(Request req, Response res) 
+  {
+    QueryParamsMap query = req.queryMap();
+    
+    String userId = query.get("clientId").value();
+    String gameId = query.get("gameId").value();
+    
+    if(userId == null || userId == "")              { return GameJoinResponse.NoClientId; }  
+    if(!PlayerRepository.instance.contains(userId)) { return GameJoinResponse.InvalidClientId; }
+    
+    if(gameId == null || gameId == "")              { return GameJoinResponse.NoGameId; }  
+    if(!GameRepository.instance.contains(gameId))   { return GameJoinResponse.InvalidGameId; }
+   
+    Game g = GameRepository.instance.getById(gameId);
+
+    if(!g.hasPlayer(userId))
+    {
+      g.addPlayer(userId);
+      return GameJoinResponse.Success;
+    }
+    
+    return GameJoinResponse.PlayerAlreadyInGame;
+
   }
 
   private Object doGameStatus(Request req, Response res) {
