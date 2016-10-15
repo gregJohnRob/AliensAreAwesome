@@ -1,16 +1,20 @@
 (function(){
-  angular.$inject = ['homeService']
+  angular.$inject = ['homeService', '$location']
   angular.module('app').controller('homeController', homeController);
-  function homeController(homeService){
+  function homeController(homeService ,$location){
     var vm = this;
     vm.login = login
 
     function login(){
-      console.log("i got here")
       homeService.login().save({username:vm.name}, function(userid){
         vm.userid = userid;
-
+        var view = "/gamelist/" + userid
+        $location.path(view);
       })
+      //temp
+      var view = "/gamelist/" + 1
+      $location.path(view);
+
     }
   }
 })()
