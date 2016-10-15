@@ -26,8 +26,9 @@ public abstract class MapElement {
     switch(name)
     {
       case "plains":    return 1;
-      
-      
+      case "stone":     return 2;
+      case "wheat":     return 3;
+      case "dirt":      return 4;
       default:          return 0;
     }
   }
