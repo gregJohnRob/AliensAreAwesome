@@ -1,7 +1,8 @@
 package api;
 
-// Defines a message as a response from one of the endpoints.
-
+/* Message - Message format returned from a REST method
+ * 
+ */
 public class Message<TData> {
 
   public String Message;

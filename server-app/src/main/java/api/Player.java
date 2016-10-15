@@ -4,6 +4,9 @@ import java.util.UUID;
 import java.util.List;
 import java.util.LinkedList;
 
+/* Player - Defines a player in the system
+ * 
+ */
 public class Player
 {
   private final String iId;

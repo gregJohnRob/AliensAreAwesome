@@ -5,6 +5,9 @@ import api.endpoints.*;
 
 public class Server
 {
+  // TODO -> MAKE THE CORS stuff work for DYLAN.
+  // THE NOOB
+  // WHO SMELLS
   private final Gson gson;
   
   private final GameEndpoint iGameEndpoint;

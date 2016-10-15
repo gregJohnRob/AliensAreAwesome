@@ -6,6 +6,9 @@ import java.util.UUID;
 import java.util.Random;
 import java.util.HashMap;
 
+/* Game - Handles all the general game logic
+ * Passes off the actual methods to the PlayerStatus
+ */
 public class Game
 {
   private final String iId;
@@ -95,5 +98,8 @@ public class Game
   private boolean isCurrentPlayer(String aPlayer) { return aPlayer == iCurrentPlayer; }
   
   private String getNewGameId() { return UUID.randomUUID().toString(); }
+  
+  // TODO
+  // Get a general status to return for the game/status REST method
   
 }

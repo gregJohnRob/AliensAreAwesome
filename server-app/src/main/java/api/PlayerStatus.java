@@ -3,6 +3,9 @@ package api;
 import java.util.Map;
 import java.util.HashMap;
 
+/* PlayerStatus - Keeps state of a player in a given game
+ * TODO - Write more here...
+ */
 public class PlayerStatus
 {
   private final String iPlayerId;
