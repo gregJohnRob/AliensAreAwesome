@@ -101,7 +101,7 @@ public class Game
   }
   
   
-  private boolean isCurrentPlayer(String aPlayer) { return aPlayer == iCurrentPlayer; }
+  public synchronized boolean isCurrentPlayer(String aPlayer) { return aPlayer == iCurrentPlayer; }
   
   private String getNewGameId() { return UUID.randomUUID().toString(); }
   

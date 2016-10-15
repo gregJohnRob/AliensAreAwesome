@@ -2,19 +2,18 @@ package api.responses;
 
 import api.Message;
 
-public class TurnAttackResponse {
-  
-  public static Message<String> Success(int damage)
+public class TurnMineResponse {
+  public static Message<String> Success(boolean myTurn)
   {
     Message<String> ms = new Message<String>();
     
     ms.Message = "Ok";
-    ms.Data = String.valueOf(damage);
+    ms.Data = Boolean.toString(myTurn);
     
     return ms;  
   }
   
-  public static Message<String> InvalidAttack              =  sendFailure("An unknown error occured.");
+  public static Message<String> Unknown              =  sendFailure("An unknown error occured.");
   public static Message<String> NoClientId          = sendFailure("No 'clientId' param provided."); 
   public static Message<String> InvalidClientId   = sendFailure("No user linked to this Id.");
   public static Message<String> NoGameId          = sendFailure("No 'gameId' param provided."); 
@@ -33,5 +32,4 @@ public class TurnAttackResponse {
     
     return ms;  
   }
-
 }
