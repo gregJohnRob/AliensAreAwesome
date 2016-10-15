@@ -20,5 +20,16 @@ public abstract class MapElement {
   public int getMovementCost() {
     return movementCost;
   }
+  
+  public int getDataValue()
+  {
+    switch(name)
+    {
+      case "plains":    return 1;
+      
+      
+      default:          return 0;
+    }
+  }
 
 }

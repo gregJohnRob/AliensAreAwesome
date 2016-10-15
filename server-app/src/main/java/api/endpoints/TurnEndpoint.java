@@ -6,6 +6,7 @@ import spark.*;
 import com.google.gson.Gson;
 
 import api.Game;
+import api.Message;
 import api.responses.PlayerGameResponse;
 import api.responses.TurnAttackResponse;
 import api.responses.TurnEndResponse;
@@ -29,7 +30,7 @@ public class TurnEndpoint
     get (String.format("%s/%s", ENDPOINT_BASE_STR, "attack"), (req, res) -> doTurnAttack(req, res), aGson::toJson);
   }
 
-  private Object doTurnAttack(Request req, Response res) {
+  private Message<String> doTurnAttack(Request req, Response res) {
     QueryParamsMap query = req.queryMap();
     
     String clientId = query.get("clientId").value();
@@ -73,7 +74,7 @@ public class TurnEndpoint
     return TurnAttackResponse.Success(damage);
   }
 
-  private Object doTurnWait(Request req, Response res) {
+  private Message<String> doTurnWait(Request req, Response res) {
     QueryParamsMap query = req.queryMap();
     
     String clientId = query.get("clientId").value();
@@ -103,7 +104,7 @@ public class TurnEndpoint
     return TurnWaitResponse.InvalidWait;
   }
 
-  private Object doTurnMove(Request req, Response res) {
+  private Message<String> doTurnMove(Request req, Response res) {
     QueryParamsMap query = req.queryMap();
     
     String clientId = query.get("clientId").value();
@@ -145,7 +146,7 @@ public class TurnEndpoint
     return TurnMoveResponse.InvalidMove;
   }
 
-  private Object doTurnEnd(Request req, Response res) {
+  private Message<String> doTurnEnd(Request req, Response res) {
     QueryParamsMap query = req.queryMap();
     
     String clientId = query.get("clientId").value();
@@ -172,7 +173,7 @@ public class TurnEndpoint
     return TurnEndResponse.Unknown;
   }
 
-  private Object doTurnMine(Request req, Response res) {
+  private Message<String> doTurnMine(Request req, Response res) {
     QueryParamsMap query = req.queryMap();
     
     String clientId = query.get("clientId").value();

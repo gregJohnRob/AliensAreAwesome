@@ -51,6 +51,17 @@ public class PlayerRepository implements Repository<Player>
   }
   
   
+  public synchronized Player getByName(String aName)
+  {
+    for(Player p : iPlayers)
+    {
+      if(p.getName().equals(aName)) { return p; }
+    }
+    
+    return null;
+  }
+  
+  
   public synchronized List<Player> getContents() { return iPlayers; }
   
   

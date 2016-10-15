@@ -40,7 +40,11 @@ public class PlayerEndpoint
         return PlayerLoginResponse.Success(p.getId());
       }     
     }
-    else { return PlayerLoginResponse.DuplicateUsername; }
+    else 
+    {
+      Player p = PlayerRepository.instance.getByName(username);
+      return PlayerLoginResponse.Success(p.getId());
+    }
     
     return PlayerLoginResponse.Unkown;
   }
