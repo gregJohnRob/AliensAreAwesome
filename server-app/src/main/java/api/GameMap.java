@@ -4,14 +4,18 @@ package api;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
+
+import api.map.MapElement;
+import api.map.MapFactory;
+
 import java.lang.Math;
 
 /* GameMap -> Deals with the Map of the Game
  */
 public class GameMap 
 {
-  public static final int MAP_SIZE_W = 50;
-  public static final int MAP_SIZE_H = 50;
+  public static final int MAP_W = 30;
+  public static final int MAP_H = 30;
   
   private MapElement[][] board;
   private Map<Unit, Point> units;
@@ -24,8 +28,8 @@ public class GameMap
   }
   
   public String getType()   { return iType; }
-  public int getHeight()    { return MAP_SIZE_H; }
-  public int getWidth()     { return MAP_SIZE_W; }
+  public int getHeight()    { return MAP_H; }
+  public int getWidth()     { return MAP_W; }
   public int[][] getData()  { return getMapData(); }
   
  
@@ -69,7 +73,7 @@ public class GameMap
   }
   
   public boolean validLocation(int x, int y) {
-    return x > -1 && x < MAP_SIZE_W && y > -1 && y < MAP_SIZE_H;
+    return x > -1 && x < MAP_W && y > -1 && y < MAP_H;
   }
   
   public static int distanceBetween(int aX, int aY, int bX, int bY) {
@@ -94,11 +98,11 @@ public class GameMap
   
   private int [][] getMapData()
   {
-    int[][] data = new int[MAP_SIZE_W][MAP_SIZE_H]; 
+    int[][] data = new int[MAP_W][MAP_H]; 
     
-    for(int w = 0; w < MAP_SIZE_W; w++)
+    for(int w = 0; w < MAP_W; w++)
     {
-      for(int h = 0; h < MAP_SIZE_H; h++)
+      for(int h = 0; h < MAP_H; h++)
       {
         data[w][h] = board[w][h].getDataValue();
       }    

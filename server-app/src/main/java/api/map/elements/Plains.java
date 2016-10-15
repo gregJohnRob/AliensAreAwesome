@@ -1,4 +1,6 @@
-package api;
+package api.map.elements;
+
+import api.map.MapElement;
 
 public class Plains extends MapElement {
   

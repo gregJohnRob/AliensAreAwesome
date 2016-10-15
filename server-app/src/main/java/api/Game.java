@@ -83,7 +83,7 @@ public class Game
         Unit u = units.get(s);
         Point p;
         do {
-          p = new Point(random.nextInt(GameMap.MAP_SIZE_H), random.nextInt(GameMap.MAP_SIZE_W));
+          p = new Point(random.nextInt(GameMap.MAP_H), random.nextInt(GameMap.MAP_W));
         } while (!iMap.setUnitLocation(u, p));
       }
       iActivePlayers.put(playerId, newPlayer);
