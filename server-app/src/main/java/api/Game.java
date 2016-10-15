@@ -37,6 +37,7 @@ public class Game
   public String getId()             { return iId; }
   public GameMap getMap()           { return iMap; }
   public Set<String> getPlayers()   { return iActivePlayers.keySet(); }
+  public int getCurrentPlayers()    { return iLobby.size(); }
   
   public synchronized boolean addPlayer(String aPlayer)
   {
