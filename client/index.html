@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html ng-app="app">
+
 <head>
-  <script type="text/javascript" src=https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- CSS -->
+  <link href="static/css/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="static/css/freelancer/freelancer.css" rel="stylesheet" type="text/css">
+  <link href="static/css/style.css" rel="stylesheet" type="text/css">
+  <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- JS -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script type="text/javascript" src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js" ></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
+  <script type="text/javascript" src="static/lib/jquery.min.js"></script>
 </head>
-<body ng-app="app" class='container-fluid'>
+
+<body ng-app="app"  id="page-top" class="index">
+
+  <!-- Navigation -->
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+        </button>
+        <a href="/#/" class="navbar-brand">Name of game</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden">
+            <a href="#page-top"></a>
+          </li>
+          <li class="page-scroll">
+            <a href="#about">Something</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
   <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center'>
     <h1>Name Of Our Game</h1>
   </div>
@@ -26,4 +65,5 @@
   <script src='app/gamelist/gamelist.service.js'></script>
 
 </body>
+
 </html>

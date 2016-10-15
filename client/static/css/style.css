@@ -1,0 +1,26 @@
+.small_padding {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.margin_top {
+  margin-top: 10px;
+}
+
+.table_headings div {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.green_button {
+  background-color: #18bc9c;
+  color: white;
+}
+
+section {
+  padding: 80px 0;
+}
+
+.top_padding {
+  padding-top: 160px;
+}
