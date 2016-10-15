@@ -65,9 +65,27 @@ public class GameMap
     return true;
   }
   
+  public boolean validLocation(int x, int y) {
+    return x > -1 && x < MAP_SIZE_W && y > -1 && y < MAP_SIZE_H;
+  }
+  
   public static int distanceBetween(int aX, int aY, int bX, int bY) {
     double distance = Math.hypot((aX-bX), (aY-bY));
     return new Double(distance).intValue();
+  }
+
+  
+  public boolean moveUnit(Unit unit, int aX, int aY) {
+    if (!validLocation(aX, aY)) {
+      return false;
+    }
+    Point current = getUnitLocation(unit);
+    int dis = distanceBetween(aX, aY, current.x,current.y);
+    if (dis <= unit.getMovementLeft() && (unitAtPoint(aX, aY))==null) {
+      units.replace(unit, new Point(aX, aY));
+      unit.setMovementLeft(unit.getMovementLeft() - dis);
+    }
+    return false;
   }
   
 }
