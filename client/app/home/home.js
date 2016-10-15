@@ -6,8 +6,8 @@
     vm.login = login
 
     function login(){
-      homeService.login().get({username:vm.name}, function(responce){
-        $location.path("/gamelist/" + responce.Data);
+      homeService.login().get({username:vm.name}, function(response){
+        $location.path("/gamelist/" + response.Data);
       });
     }
   }
