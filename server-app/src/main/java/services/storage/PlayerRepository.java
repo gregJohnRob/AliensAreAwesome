@@ -40,6 +40,17 @@ public class PlayerRepository implements Repository<Player>
   public boolean remove(Player aPlayer) { return iPlayers.remove(aPlayer); }
   
   
+  public boolean containsName(String aName)
+  {
+    for(Player p : iPlayers)
+    {
+      if(p.getName().equals(aName)) { return true; }
+    }
+    
+    return false;
+  }
+  
+  
   public List<Player> getContents() { return iPlayers; }
   
   
@@ -47,7 +58,7 @@ public class PlayerRepository implements Repository<Player>
   {
     for(Player p : iPlayers)
     {
-      if(p.getId() == aId) { return p; }
+      if(p.getId().equals(aId)) { return p; }
     }
     
     return null;
