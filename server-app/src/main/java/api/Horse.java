@@ -15,6 +15,7 @@ public class Horse extends Unit {
       damage = new Double(this.getDamage() * Unit.DISADVANTAGE_MOD).intValue();
     }
     enemy.setHealth(enemy.getHealth() - damage);
+    this.setCanAttack(false);
     return enemy.isDead();
   }
 }
