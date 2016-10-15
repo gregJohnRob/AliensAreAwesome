@@ -106,4 +106,14 @@ public class GameMap
 
     return data;
   } 
+  
+  public boolean setUnitLocation(Unit u, Point p) {
+    for (Unit unit : units.keySet()) {
+      if (p.equals(units.get(unit))) {
+        return false;
+      }
+    }
+    units.put(u, p);
+    return true;
+  }
 }

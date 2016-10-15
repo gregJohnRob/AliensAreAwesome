@@ -2,9 +2,11 @@ package api;
 
 import java.util.Set;
 import java.util.Map;
+import java.util.Random;
 import java.util.List;
 import java.util.UUID;
 import java.util.HashMap;
+import java.awt.Point;
 import java.util.ArrayList;
 
 /* Game - Handles all the general game logic
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 public class Game
 {
   private final String iId;
+  private static Random random = new Random();
  
   private final GameMap iMap;
   private final List<String> iLobby;
@@ -44,6 +47,9 @@ public class Game
     if(!hasPlayer(aPlayer))
     {
       iLobby.add(aPlayer);
+      if (this.isFull(2)) {
+        this.startGame();
+      }
       return true;
     }
     return false; 
@@ -70,7 +76,19 @@ public class Game
   
   public synchronized void startGame()
   {
-    //TODO --- do something?
+    for (String playerId : iLobby) {
+      PlayerStatus newPlayer = new PlayerStatus(playerId, iMap);
+      Map<String, Unit> units = newPlayer.getUnitMap();
+      for (String s : units.keySet()) {
+        Unit u = units.get(s);
+        Point p;
+        do {
+          p = new Point(random.nextInt(GameMap.MAP_SIZE_H), random.nextInt(GameMap.MAP_SIZE_W));
+        } while (!iMap.setUnitLocation(u, p));
+      }
+      iActivePlayers.put(playerId, newPlayer);
+      iActivePlayerOrder.add(playerId);
+    }
   }
   
   
