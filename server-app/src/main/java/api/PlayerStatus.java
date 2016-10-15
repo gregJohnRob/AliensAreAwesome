@@ -64,7 +64,7 @@ public class PlayerStatus
   private Map<String, Unit> getNewUnits()
   {
     HashMap<String, Unit> newUnits = new HashMap<String, Unit>();
-    Unit[] units = Unit.generateUnits(STARTING_UNIT_COUNT);
+    Unit[] units = UnitFactory.generateNUnits(STARTING_UNIT_COUNT);
     for (int i = 0; i < STARTING_UNIT_COUNT; i++) {
       String unitId = iPlayerId + "_" + String.valueOf(i);
       newUnits.put(unitId, units[i]);

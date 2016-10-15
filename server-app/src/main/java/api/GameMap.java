@@ -20,7 +20,7 @@ public class GameMap
   private Map<Unit, Point> units;
   
   public GameMap() {
-    board = generateNewMap();
+    board = MapFactory.generateNewMap();
     units = new HashMap<Unit, Point>();
   }
   
@@ -67,24 +67,4 @@ public class GameMap
     return new Double(distance).intValue();
   }
   
-  private MapElement[][] generateNewMap() {
-    Random gen = new Random();
-    String seed = SEEDS[gen.nextInt(SEEDS.length)];
-    switch (seed) {
-    case "plains":
-      return generateNewPlainsMap();
-    default:
-      return generateNewPlainsMap();
-    }
-  }
-  
-  private MapElement[][] generateNewPlainsMap() {
-    MapElement[][] newBoard = new MapElement[MAP_SIZE_W][MAP_SIZE_H];
-    for (int i = 0; i < MAP_SIZE_W; i++) {
-      for (int j = 0; j < MAP_SIZE_H; j++) {
-        newBoard[i][j] = new Plains();
-      }
-    }
-    return newBoard;
-  }
 }
