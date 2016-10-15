@@ -1,5 +1,6 @@
 package api;
 
+import java.util.Set;
 import java.util.Map;
 import java.util.List;
 import java.util.UUID;
@@ -35,8 +36,13 @@ public class Game
       
       iActivePlayers.put(player, new PlayerStatus(player, iMap));
     }
-    
   }
+  
+  
+  public String getId()             { return iId; }
+  public GameMap getMap()           { return iMap; }
+  public Set<String> getPlayers()   { return iActivePlayers.keySet(); }
+  
   
   public synchronized boolean DoAttack(String aPlayer, String aUnit, int aX, int aY)
   {

@@ -4,8 +4,7 @@ Our Rest API
 
 
 Game/
-	List	- GET => 									-> Returns List of active Game Ids
-	View	- GET => Game Id 							-> Returns game information
+	List	- GET => 									-> Returns List of active Game Ids and their some information
 	Status	- GET => Game Id 							-> Returns status of current game
 
 	Join	- POST => Client Id, Game id				-> Returns new Map & Units
@@ -14,7 +13,7 @@ Game/
 
 
 Player/
-	Game 	- GET  => Client Id 						-> Returns your current games 
+	Game 	- GET  => Client Id 						-> Returns your current games - (Similar to  game/list)
 	Login	- POST => Username  						-> Returns Client Id
 
 
@@ -31,4 +30,5 @@ Message:
 	Status : OK | Failed
 	Msg :  	(If fail - why?)
 	Data: 	(Anything Dyaln expects)
+
 
