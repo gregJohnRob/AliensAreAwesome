@@ -17,8 +17,8 @@
     }
 
     function joingame(id){
-      console.log("hi");
       var view = "game/"+ id + "/" + vm.userid;
+      console.log(view);
       $location.path(view);
     }
 
