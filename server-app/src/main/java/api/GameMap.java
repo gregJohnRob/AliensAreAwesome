@@ -23,7 +23,10 @@ public class GameMap
     units = new HashMap<Unit, Point>();
   }
   
-  public String getType() { return iType; }
+  public String getType()   { return iType; }
+  public int getHeight()    { return MAP_SIZE_H; }
+  public int getWidth()     { return MAP_SIZE_W; }
+  public int[][] getData()  { return getMapData(); }
   
  
   public Point getUnitLocation(Unit unit) {
@@ -70,4 +73,19 @@ public class GameMap
     return new Double(distance).intValue();
   }
   
+  
+  private int [][] getMapData()
+  {
+    int[][] data = new int[MAP_SIZE_W][MAP_SIZE_H]; 
+    
+    for(int w = 0; w < MAP_SIZE_W; w++)
+    {
+      for(int h = 0; h < MAP_SIZE_H; h++)
+      {
+        data[w][h] = board[w][h].getDataValue();
+      }    
+    }
+
+    return data;
+  } 
 }

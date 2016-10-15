@@ -64,6 +64,10 @@ public class Game
     
   public synchronized boolean isFull(int aMaxPlayers) { return iLobby.size() == aMaxPlayers; }
   
+  
+  public synchronized String getCurrentPlayerId() { return iCurrentPlayer; }
+  
+  
   public synchronized void startGame()
   {
     //TODO --- do something?

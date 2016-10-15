@@ -45,6 +45,8 @@ public class PlayerStatus
     return -1;
   }
   
+  public synchronized Map<String, Unit> getUnitMap() { return iUnits; }
+  
   public synchronized boolean move(String aUnit, int aX, int aY)
   {
     return false;

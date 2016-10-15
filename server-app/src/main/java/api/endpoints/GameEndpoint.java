@@ -93,9 +93,24 @@ public class GameEndpoint
 
   }
 
-  private Object doGameStatus(Request req, Response res) {
-    // TODO Auto-generated method stub
-    return null;
+  private Object doGameStatus(Request req, Response res) 
+  {
+    QueryParamsMap query = req.queryMap();
+    
+    String userId = query.get("clientId").value();
+    String gameId = query.get("gameId").value();
+    
+    if(userId == null || userId == "")              { return GameStatusResponse.NoClientId; }  
+    if(!PlayerRepository.instance.contains(userId)) { return GameStatusResponse.InvalidClientId; }
+    
+    if(gameId == null || gameId == "")              { return GameStatusResponse.NoGameId; }  
+    if(!GameRepository.instance.contains(gameId))   { return GameStatusResponse.InvalidGameId; }
+   
+    Game g = GameRepository.instance.getById(gameId);
+
+    if(!g.hasPlayer(userId))                        { return GameStatusResponse.PlayerNotInGame; }
+       
+    return GameStatusResponse.Success(g);
   }
 
  
