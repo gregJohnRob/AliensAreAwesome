@@ -47,9 +47,8 @@ public class GameEndpoint
     return null;
   }
 
-  private Object doGameList(Request req, Response res) {
-    // TODO Auto-generated method stub
-    return null;
+  private String doGameList(Request req, Response res) {
+    return "Hi Gregor";
   }
   
 
