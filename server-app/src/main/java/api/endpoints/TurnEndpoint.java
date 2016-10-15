@@ -8,6 +8,10 @@ import com.google.gson.Gson;
 import api.Game;
 import api.responses.PlayerGameResponse;
 import api.responses.TurnAttackResponse;
+import api.responses.TurnEndResponse;
+import api.responses.TurnMineResponse;
+import api.responses.TurnMoveResponse;
+import api.responses.TurnWaitResponse;
 import services.storage.GameRepository;
 import services.storage.PlayerRepository;
 
@@ -25,16 +29,6 @@ public class TurnEndpoint
     get (String.format("%s/%s", ENDPOINT_BASE_STR, "attack"), (req, res) -> doTurnAttack(req, res), aGson::toJson);
   }
 
-  /*
-   * QueryParamsMap query = req.queryMap();
-    
-    String userId = query.get("clientId").value();
-    
-    if(userId == null || userId == "")              { return PlayerGameResponse.NoClientId; }  
-    if(!PlayerRepository.instance.contains(userId)) { return PlayerGameResponse.InvalidClientId; }
-    
-    return PlayerGameResponse.Success(GameRepository.instance.getGamesForPlayer(userId));
-   */
   private Object doTurnAttack(Request req, Response res) {
     QueryParamsMap query = req.queryMap();
     
@@ -80,23 +74,125 @@ public class TurnEndpoint
   }
 
   private Object doTurnWait(Request req, Response res) {
-    // TODO Auto-generated method stub
-    return null;
+    QueryParamsMap query = req.queryMap();
+    
+    String clientId = query.get("clientId").value();
+    if (clientId == null || clientId == "") { 
+      return TurnWaitResponse.NoClientId; 
+    }
+    if(!PlayerRepository.instance.contains(clientId)) { 
+      return TurnWaitResponse.InvalidClientId; 
+    }
+    
+    String gameId = query.get("gameId").value();
+    if (gameId == null || gameId == "") { 
+      return TurnWaitResponse.NoGameId; 
+    }
+    if (!GameRepository.instance.contains(gameId)) {
+      return TurnWaitResponse.InvalidGameId;
+    }
+    
+    String unitId = query.get("unitId").value();
+    if (unitId == null || unitId == "") {
+      return TurnWaitResponse.NoUnitId;
+    }
+    Game game = GameRepository.instance.getById(gameId);
+    if (game.DoWait(clientId, unitId)) {
+      return TurnWaitResponse.Success(unitId);
+    }
+    return TurnWaitResponse.InvalidWait;
   }
 
   private Object doTurnMove(Request req, Response res) {
-    // TODO Auto-generated method stub
-    return null;
+    QueryParamsMap query = req.queryMap();
+    
+    String clientId = query.get("clientId").value();
+    if (clientId == null || clientId == "") { 
+      return TurnMoveResponse.NoClientId; 
+    }
+    if(!PlayerRepository.instance.contains(clientId)) { 
+      return TurnMoveResponse.InvalidClientId; 
+    }
+    
+    String gameId = query.get("gameId").value();
+    if (gameId == null || gameId == "") { 
+      return TurnMoveResponse.NoGameId; 
+    }
+    if (!GameRepository.instance.contains(gameId)) {
+      return TurnMoveResponse.InvalidGameId;
+    }
+    
+    String unitId = query.get("unitId").value();
+    if (unitId == null || unitId == "") {
+      return TurnMoveResponse.NoUnitId;
+    }
+    
+    String sx = query.get("x").value();
+    String sy = query.get("y").value();
+    int x = 0;
+    int y = 0;
+    try {
+      x = Integer.parseInt(sx);
+      y = Integer.parseInt(sy);
+    } catch (Exception e) {
+      return TurnMoveResponse.InvalidLocation;
+    }
+    
+    Game game = GameRepository.instance.getById(gameId);
+    if (game.DoMove(clientId, unitId, x, y)) {
+      return TurnMoveResponse.Success();
+    }
+    return TurnMoveResponse.InvalidMove;
   }
 
   private Object doTurnEnd(Request req, Response res) {
-    // TODO Auto-generated method stub
-    return null;
+    QueryParamsMap query = req.queryMap();
+    
+    String clientId = query.get("clientId").value();
+    if (clientId == null || clientId == "") { 
+      return TurnEndResponse.NoClientId; 
+    }
+    if(!PlayerRepository.instance.contains(clientId)) { 
+      return TurnEndResponse.InvalidClientId; 
+    }
+    
+    String gameId = query.get("gameId").value();
+    if (gameId == null || gameId == "") { 
+      return TurnEndResponse.NoGameId; 
+    }
+    if (!GameRepository.instance.contains(gameId)) {
+      return TurnEndResponse.InvalidGameId;
+    }
+    
+    Game game = GameRepository.instance.getById(gameId); 
+    boolean success = game.DoEnd(clientId);
+    if (success) {
+      return TurnEndResponse.Success();
+    }
+    return TurnEndResponse.Unknown;
   }
 
   private Object doTurnMine(Request req, Response res) {
-    // TODO Auto-generated method stub
-    return null;
+    QueryParamsMap query = req.queryMap();
+    
+    String clientId = query.get("clientId").value();
+    if (clientId == null || clientId == "") { 
+      return TurnMineResponse.NoClientId; 
+    }
+    if(!PlayerRepository.instance.contains(clientId)) { 
+      return TurnMineResponse.InvalidClientId; 
+    }
+    
+    String gameId = query.get("gameId").value();
+    if (gameId == null || gameId == "") { 
+      return TurnMineResponse.NoGameId; 
+    }
+    if (!GameRepository.instance.contains(gameId)) {
+      return TurnMineResponse.InvalidGameId;
+    }
+    
+    Game game = GameRepository.instance.getById(gameId); 
+    return TurnMineResponse.Success(game.isCurrentPlayer(clientId));
   }
 
 }

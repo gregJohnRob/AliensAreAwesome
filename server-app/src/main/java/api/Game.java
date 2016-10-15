@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.Map;
 import java.util.List;
 import java.util.UUID;
-import java.util.Random;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -38,6 +37,7 @@ public class Game
   public String getId()             { return iId; }
   public GameMap getMap()           { return iMap; }
   public Set<String> getPlayers()   { return iActivePlayers.keySet(); }
+  public int getCurrentPlayers()    { return iLobby.size(); }
   
   public synchronized boolean addPlayer(String aPlayer)
   {
@@ -127,7 +127,7 @@ public class Game
   }
   
   
-  private boolean isCurrentPlayer(String aPlayer) { return aPlayer == iCurrentPlayer; }
+  public synchronized boolean isCurrentPlayer(String aPlayer) { return aPlayer == iCurrentPlayer; }
   
   private String getNewGameId() { return UUID.randomUUID().toString(); }
   
