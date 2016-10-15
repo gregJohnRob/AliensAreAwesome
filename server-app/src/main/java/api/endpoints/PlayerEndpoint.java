@@ -6,6 +6,7 @@ import api.*;
 import spark.*;
 import api.Message;
 import api.responses.PlayerLoginResponse;
+import api.responses.PlayerGameResponse;
 
 import services.storage.*;
 import com.google.gson.Gson;
@@ -15,13 +16,8 @@ public class PlayerEndpoint
 {
   private static final String ENDPOINT_BASE_STR = "player";
   
-  private final PlayerRepository iPlayerRepo;
-  
- 
-  public PlayerEndpoint(PlayerRepository aPlayerRepo, Gson aGson)
-  { 
-    iPlayerRepo = aPlayerRepo;
-    
+  public PlayerEndpoint(Gson aGson)
+  {   
     get (String.format("%s/%s", ENDPOINT_BASE_STR, "game"),  (req, res) -> doPlayerGame(req, res), aGson::toJson);
     get (String.format("%s/%s", ENDPOINT_BASE_STR, "login"), (req, res) -> doPlayerLogin(req, res), aGson::toJson);  
   }
@@ -32,26 +28,33 @@ public class PlayerEndpoint
 
     String username = query.get("username").value();
     
-    if(username == null || username == "") { return PlayerLoginResponse.NoUsername(); }
+    if(username == null || username == "") { return PlayerLoginResponse.NoUsername; }
     
-    if(!iPlayerRepo.containsName(username))
+    if(!PlayerRepository.instance.containsName(username))
     {
       Player p = new Player(username);
       
-      if(iPlayerRepo.add(p))
+      if(PlayerRepository.instance.add(p))
       {
         System.out.printf("Adding a player with the username '%s'\n", username);
         return PlayerLoginResponse.Success(p.getId());
       }     
     }
-    else { return PlayerLoginResponse.DuplicateUsername(); }
+    else { return PlayerLoginResponse.DuplicateUsername; }
     
-    return PlayerLoginResponse.Unkown();
+    return PlayerLoginResponse.Unkown;
   }
 
-  private Object doPlayerGame(Request req, Response res) {
-    // TODO Auto-generated method stub
-    return null;
+  private Message<PlayerGameResponse.Payload> doPlayerGame(Request req, Response res)
+  {
+    QueryParamsMap query = req.queryMap();
+    
+    String userId = query.get("clientId").value();
+    
+    if(userId == null || userId == "")              { return PlayerGameResponse.NoClientId; }  
+    if(!PlayerRepository.instance.contains(userId)) { return PlayerGameResponse.InvalidClientId; }
+    
+    return PlayerGameResponse.Success(GameRepository.instance.getGamesForPlayer(userId));
   }
 
   

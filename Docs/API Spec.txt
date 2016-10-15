@@ -13,7 +13,7 @@ Game/
 
 
 Player/
-	Game 	- GET  => Client Id 			-> Returns your current games - (Similar to  game/list)
+	Game 	- GET => Client Id 				-> Returns your current games - (Similar to  game/list)
 	Login	- GET => Username  				-> Returns Client Id
 
 

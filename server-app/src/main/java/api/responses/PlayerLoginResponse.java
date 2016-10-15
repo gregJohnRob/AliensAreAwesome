@@ -14,13 +14,11 @@ public class PlayerLoginResponse
     return ms;  
   }
   
-  public static Message<String> NoUsername() { return sendFailure("No 'username' param provided."); }
+  public static Message<String> Unkown              =  sendFailure("An unknown error occured.");
+  public static Message<String> NoUsername          = sendFailure("No 'username' param provided."); 
+  public static Message<String> DuplicateUsername   = sendFailure("Username already exists.");
+
   
-  public static Message<String> DuplicateUsername() { return sendFailure("Username already exists."); }
-  
-  public static Message<String> Unkown() { return sendFailure("An unknown error occured."); }
-  
- 
   private static Message<String> sendFailure(String aMessage)
   {
     Message<String> ms = new Message<String>();

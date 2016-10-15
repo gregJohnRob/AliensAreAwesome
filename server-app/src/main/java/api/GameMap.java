@@ -13,19 +13,24 @@ public class GameMap
 
   public static final String[] SEEDS = {"plains"};
   
-  private MapElement[][] board; 
+  private MapElement[][] board;   
+  private String iType;
   
-  public GameMap() {
-    board = generateNewMap();
-  }
+  public GameMap() { board = generateNewMap(); }
+  
+  
+  public String getType() { return iType; }
+  
   
   private MapElement[][] generateNewMap() {
     Random gen = new Random();
     String seed = SEEDS[gen.nextInt(SEEDS.length)];
     switch (seed) {
     case "plains":
+      iType = "plains";
       return generateNewPlainsMap();
     default:
+      iType = "plains";
       return generateNewPlainsMap();
     }
   }

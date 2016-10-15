@@ -12,11 +12,11 @@ public class GameRepository implements Repository<Game>
   public GameRepository() { iGames = new ArrayList<Game>(); }
   
   
-  public boolean contains(String aId) { return getById(aId) != null; }
-  public boolean contains(Game aGame) { return iGames.contains(aGame);  }
+  public synchronized boolean contains(String aId) { return getById(aId) != null; }
+  public synchronized boolean contains(Game aGame) { return iGames.contains(aGame);  }
   
   
-  public boolean add(Game aGame)
+  public synchronized boolean add(Game aGame)
   {
     if(!contains(aGame))
     {
@@ -28,7 +28,7 @@ public class GameRepository implements Repository<Game>
   }
   
   
-  public boolean remove(String aId)
+  public synchronized boolean remove(String aId)
   {
     Game g = getById(aId);    
     if(g != null) { return remove(g); }
@@ -36,20 +36,44 @@ public class GameRepository implements Repository<Game>
     return false;
   }
   
-  public boolean remove(Game aGame) { return iGames.remove(aGame); }
+  public synchronized boolean remove(Game aGame) { return iGames.remove(aGame); }
   
-  public List<Game> getContents() { return iGames; }
+  public synchronized List<Game> getContents() { return iGames; }
   
   
+  public synchronized List<Game> getGamesForPlayer(String aPlayerId)
+  {
+    List<Game> games = new ArrayList<Game>();
+        
+    for(Game g : iGames)
+    {
+      if (g.getPlayers().contains(aPlayerId)) { games.add(g); }
+    }
+     
+    return games;
+  }
+  
+  
+   
   private Game getById(String aId)
   {
     for(Game g : iGames)
     {
-     if(g.getId() == aId) { return g; }
+     if(g.getId().equals(aId)) { return g; }
     }
 
     return null;
-  }
+  }  
   
+  
+  public static GameRepository instance = getInstance();
+  
+  private static GameRepository theInstance = null;
+  private static GameRepository getInstance()
+  {
+    if(theInstance == null) { theInstance = new GameRepository(); }  
+    return theInstance;
+  }
+ 
 }
 

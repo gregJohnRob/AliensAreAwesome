@@ -12,11 +12,11 @@ public class PlayerRepository implements Repository<Player>
   public PlayerRepository() { iPlayers = new ArrayList<Player>(); }
   
   
-  public boolean contains(String aId)       { return getById(aId) != null; }
-  public boolean contains(Player aPlayer)   { return iPlayers.contains(aPlayer); }  
+  public synchronized boolean contains(String aId)       { return getById(aId) != null; }
+  public synchronized boolean contains(Player aPlayer)   { return iPlayers.contains(aPlayer); }  
   
     
-  public boolean add(Player aPlayer)
+  public synchronized boolean add(Player aPlayer)
   {
     if(!contains(aPlayer))
     {
@@ -28,7 +28,7 @@ public class PlayerRepository implements Repository<Player>
   }
   
   
-  public boolean remove(String aId)
+  public synchronized boolean remove(String aId)
   {
     Player p = getById(aId);
     
@@ -37,10 +37,10 @@ public class PlayerRepository implements Repository<Player>
     return false;
   }
   
-  public boolean remove(Player aPlayer) { return iPlayers.remove(aPlayer); }
+  public synchronized boolean remove(Player aPlayer) { return iPlayers.remove(aPlayer); }
   
   
-  public boolean containsName(String aName)
+  public synchronized boolean containsName(String aName)
   {
     for(Player p : iPlayers)
     {
@@ -51,7 +51,7 @@ public class PlayerRepository implements Repository<Player>
   }
   
   
-  public List<Player> getContents() { return iPlayers; }
+  public synchronized List<Player> getContents() { return iPlayers; }
   
   
   private Player getById(String aId)
@@ -62,6 +62,15 @@ public class PlayerRepository implements Repository<Player>
     }
     
     return null;
+  }
+  
+  public static PlayerRepository instance = getInstance();
+  
+  private static PlayerRepository theInstance = null;
+  private static PlayerRepository getInstance()
+  {
+    if(theInstance == null) { theInstance = new PlayerRepository(); }  
+    return theInstance;
   }
  
 }
