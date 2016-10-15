@@ -7,11 +7,8 @@ import com.google.gson.Gson;
 
 import api.Game;
 import api.Message;
-import api.responses.GameCreateResponse;
-import api.responses.GameListResponse;
-import api.responses.PlayerGameResponse;
-import services.storage.GameRepository;
-import services.storage.PlayerRepository;
+import api.responses.*;
+import services.storage.*;
 
 
 public class GameEndpoint
@@ -47,9 +44,28 @@ public class GameEndpoint
     return GameCreateResponse.Success(g);
   }
 
-  private Object doGameLeave(Request req, Response res) {
-    // TODO Auto-generated method stub
-    return null;
+  private Message<Boolean> doGameLeave(Request req, Response res)
+  {
+    QueryParamsMap query = req.queryMap();
+    
+    String userId = query.get("clientId").value();
+    String gameId = query.get("gameId").value();
+    
+    if(userId == null || userId == "")              { return GameLeaveResponse.NoClientId; }  
+    if(!PlayerRepository.instance.contains(userId)) { return GameLeaveResponse.InvalidClientId; }
+    
+    if(gameId == null || gameId == "")            { return GameLeaveResponse.NoGameId; }  
+    if(!GameRepository.instance.contains(gameId)) { return GameLeaveResponse.InvalidGameId; }
+   
+    Game g = GameRepository.instance.getById(gameId);
+
+    if(g.hasPlayer(userId))
+    {
+      g.removePlayer(userId);
+      return GameLeaveResponse.Success;
+    }
+    
+    return GameLeaveResponse.PlayerNotInGame;
   }
 
   private Object doGameJoin(Request req, Response res) {
