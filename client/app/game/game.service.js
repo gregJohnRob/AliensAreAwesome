@@ -1,10 +1,10 @@
 (function(){
-  angular.$inject = ['$resource'];
-  angular.module('app').factory('gamelistService', gamelistService);
+  angular.$inject = ['$resource', '$location'];
+  angular.module('app').factory('gameService', gameService);
 
-  function gamelistService($resource){
+  function gameService($resource, $location){
     var service = {
-      
+
     };
 
     return service;

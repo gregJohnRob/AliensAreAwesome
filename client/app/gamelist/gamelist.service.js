@@ -1,8 +1,8 @@
 (function(){
-  angular.$inject = ['$resource'];
+  angular.$inject = ['$resource', '$location'];
   angular.module('app').factory('gamelistService', gamelistService);
 
-  function gamelistService($resource){
+  function gamelistService($resource, $location){
     var service = {
       mygames:mygames,
       allgames:allgames,
@@ -12,7 +12,7 @@
     return service;
 
     function mygames(id){
-      return $resource('http://localhost:4567/player/game/').get({clientId:'d703932b-c9d1-45a7-bd5f-d86a18fb24c6'} , function(response){
+      return $resource('http://localhost:4567/player/game/').get({clientId: id} , function(response){
         return response;
       })
     }
