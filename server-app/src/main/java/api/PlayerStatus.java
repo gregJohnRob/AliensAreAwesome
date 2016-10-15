@@ -23,11 +23,11 @@ public class PlayerStatus
     iUnits = getNewUnits();  
   }
   
-  public synchronized boolean attack(String aUnit, int aX, int aY)
+  public synchronized int attack(String aUnit, int aX, int aY)
   {
     Unit unit = iUnits.get(aUnit);
     if (unit == null) {
-      return false;
+      return -1;
     }
     synchronized(iMap) {
       Point p = iMap.getUnitLocation(unit);
@@ -35,13 +35,14 @@ public class PlayerStatus
       int y = new Double(p.getY()).intValue();
       Unit enemy = iMap.unitAtPoint(aX, aY);
       if (unit.getRange() >= GameMap.distanceBetween(aX, aY, x, y) && unit.getCanAttack()) {
-        boolean dead = unit.attack(enemy);
-        if (dead) {
+        int damage = unit.attack(enemy);
+        if (enemy.isDead()) {
           iMap.removeUnit(enemy);
         }
+        return damage;
       }
     }
-    return true;
+    return -1;
   }
   
   public synchronized boolean move(String aUnit, int aX, int aY)

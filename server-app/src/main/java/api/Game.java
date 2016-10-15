@@ -44,7 +44,7 @@ public class Game
   public Set<String> getPlayers()   { return iActivePlayers.keySet(); }
   
   
-  public synchronized boolean DoAttack(String aPlayer, String aUnit, int aX, int aY)
+  public synchronized int DoAttack(String aPlayer, String aUnit, int aX, int aY)
   {
     if(isCurrentPlayer(aPlayer))
     {
@@ -52,7 +52,7 @@ public class Game
       return currentPlayerStatus.attack(aUnit, aX, aY);   
     }
     
-    return false;
+    return -1;
   }
   
   public synchronized boolean DoMove(String aPlayer, String aUnit, int aX, int aY)

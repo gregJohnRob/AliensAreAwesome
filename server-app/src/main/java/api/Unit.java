@@ -50,7 +50,7 @@ public abstract class Unit
    * @param enemy
    * @return
    */
-  public abstract boolean attack(Unit enemy);
+  public abstract int attack(Unit enemy);
   
   public boolean isDead() {
     return health <= 0;
