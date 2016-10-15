@@ -5,8 +5,6 @@ import java.util.List;
 
 import api.Game;
 import api.Message;
-import api.responses.PlayerGameResponse.Payload;
-import api.responses.PlayerGameResponse.PayloadEntry;
 
 public class GameListResponse
 {

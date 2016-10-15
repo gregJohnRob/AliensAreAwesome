@@ -74,13 +74,15 @@ public class Server
     PlayerRepository.instance.add(new Player("Ewan"));  
     String myId = PlayerRepository.instance.getContents().get(0).getId();
     
-    List<String> players = new ArrayList<String>();
-    players.add(myId);
-    
     System.out.println(myId);
     
-    GameRepository.instance.add(new Game(players));   
-    GameRepository.instance.add(new Game(new ArrayList<String>()));
+    Game g = new Game();
+    g.addPlayer(myId);
+    
+    if(g.addPlayer(myId)) { System.out.println("FUCK..."); }
+    
+    GameRepository.instance.add(g);   
+    GameRepository.instance.add(new Game());
   }
   
   

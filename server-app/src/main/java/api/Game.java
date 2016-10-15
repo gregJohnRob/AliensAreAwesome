@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.Random;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /* Game - Handles all the general game logic
  * Passes off the actual methods to the PlayerStatus
@@ -15,33 +16,58 @@ public class Game
   private final String iId;
  
   private final GameMap iMap;
+  private final List<String> iLobby;
   private final List<String> iActivePlayerOrder;
-  private final HashMap<String, PlayerStatus> iActivePlayers;
+  private final Map<String, PlayerStatus> iActivePlayers;
 
   private String iCurrentPlayer;
   
-  public Game(List<String> aPlayers)
+  public Game()
   {
     iCurrentPlayer = null;
-    iActivePlayerOrder = aPlayers;
-    
+
     iId = getNewGameId();
     iMap = new GameMap();
     
+    iLobby = new ArrayList<String>();
+    iActivePlayerOrder = new ArrayList<String>();
     iActivePlayers = new HashMap<String, PlayerStatus>();
-    
-    for(String player : aPlayers)
-    {
-      if(iCurrentPlayer == null) { iCurrentPlayer = player; }
-      
-      iActivePlayers.put(player, new PlayerStatus(player, iMap));
-    }
   }
   
   
   public String getId()             { return iId; }
   public GameMap getMap()           { return iMap; }
   public Set<String> getPlayers()   { return iActivePlayers.keySet(); }
+  
+  public synchronized boolean addPlayer(String aPlayer)
+  {
+    if(!hasPlayer(aPlayer))
+    {
+      iLobby.add(aPlayer);
+      return true;
+    }
+    return false; 
+  }
+  
+  public synchronized boolean removePlayer(String aPlayer)
+  {
+    if(hasPlayer(aPlayer))
+    {
+      iLobby.remove(aPlayer);
+      return true;
+    }
+    
+    return false;
+  }
+  
+  public synchronized boolean hasPlayer(String aPlayer) { return iLobby.contains(aPlayer); }
+    
+  public synchronized boolean isFull(int aMaxPlayers) { return iLobby.size() == aMaxPlayers; }
+  
+  public synchronized void startGame()
+  {
+    //TODO --- do something?
+  }
   
   
   public synchronized boolean DoAttack(String aPlayer, String aUnit, int aX, int aY)
