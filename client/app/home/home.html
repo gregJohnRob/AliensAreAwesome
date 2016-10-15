@@ -1,8 +1,33 @@
-<div>
-  <form name="myForm"class="form-group">
-    <input type="text" class="form-control" name="login" ng-model="vm.name" placeholder="login" required/>
-    <div class="btn btn-default col-xs-12" ng-click="vm.login()" ng-disabled="!myForm.login.$valid">
-      Login
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <img class="img-responsive" src="../static/img/profile.png" alt="">
+                <div>
+                  <form name="myForm"class="form-group">
+                    <input type="text" class="form-control" name="login" ng-model="vm.name" placeholder="login" required/> <br/>
+                    <div class="btn btn-default col-lg-4 col-lg-offset-4" ng-click="vm.login()" ng-disabled="!myForm.login.$valid">
+                      Login
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </form>
-</div>
+</header>
+
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>About</h2>
+                <hr class="star-primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <p>This game is about all the quality banter OOOO YEAH it's so good.</p>
+            </div>
+        </div>
+    </div>
+</section>
