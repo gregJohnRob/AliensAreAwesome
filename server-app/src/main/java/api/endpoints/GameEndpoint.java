@@ -16,9 +16,9 @@ public class GameEndpoint
     get (String.format("%s/%s", ENDPOINT_BASE_STR, "view"),    (req, res) -> doGameView(req, res), aGson::toJson);
     get (String.format("%s/%s", ENDPOINT_BASE_STR, "status"),  (req, res) -> doGameStatus(req, res), aGson::toJson);
     
-    post(String.format("%s/%s",  ENDPOINT_BASE_STR, "join"),   (req, res) -> doGameJoin(req, res), aGson::toJson);
-    post(String.format("%s/%s",  ENDPOINT_BASE_STR, "leave"),  (req, res) -> doGameLeave(req, res), aGson::toJson);
-    post(String.format("%s/%s",  ENDPOINT_BASE_STR, "create"), (req, res) -> doGameCreate(req, res), aGson::toJson);
+    get(String.format("%s/%s",  ENDPOINT_BASE_STR, "join"),   (req, res) -> doGameJoin(req, res), aGson::toJson);
+    get(String.format("%s/%s",  ENDPOINT_BASE_STR, "leave"),  (req, res) -> doGameLeave(req, res), aGson::toJson);
+    get(String.format("%s/%s",  ENDPOINT_BASE_STR, "create"), (req, res) -> doGameCreate(req, res), aGson::toJson);
     
   }
 

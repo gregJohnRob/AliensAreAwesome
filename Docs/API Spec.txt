@@ -4,26 +4,26 @@ Our Rest API
 
 
 Game/
-	List	- GET => 									-> Returns List of active Game Ids and their some information
-	Status	- GET => Game Id 							-> Returns status of current game
+	List	- GET => 						-> Returns List of active Game Ids and their some information
+	Status	- GET => Game Id 				-> Returns status of current game
 
-	Join	- POST => Client Id, Game id				-> Returns new Map & Units
-	Leave	- POST => Client Id, Game Id
-	Create	- POST => 
+	Join	- GET => Client Id, Game id		-> Returns new Map & Units
+	Leave	- GET => Client Id, Game Id
+	Create	- GET => 
 
 
 Player/
-	Game 	- GET  => Client Id 						-> Returns your current games - (Similar to  game/list)
-	Login	- POST => Username  						-> Returns Client Id
+	Game 	- GET  => Client Id 			-> Returns your current games - (Similar to  game/list)
+	Login	- GET => Username  				-> Returns Client Id
 
 
 Turn/
-	Mine	- GET => Client Id 							-> Returns Yes/No | True / False
+	Mine	- GET => Client Id 				-> Returns Yes/No | True / False
 
-	Attack 	- POST => Client Id, Game Id, Unit Id, Position
-	Move 	- POST => Client id, Game Id, Unit Id, Position
-	Wait	- POST => Client Id, Game Id, Unit Id
-	End		- POST => Client Id, Game Id
+	Attack 	- GET => Client Id, Game Id, Unit Id, Position
+	Move 	- GET => Client id, Game Id, Unit Id, Position
+	Wait	- GET => Client Id, Game Id, Unit Id
+	End		- GET => Client Id, Game Id
 
 
 Message:
