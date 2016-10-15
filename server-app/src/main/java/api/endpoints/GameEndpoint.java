@@ -5,6 +5,10 @@ import static spark.Spark.*;
 import spark.*;
 import com.google.gson.Gson;
 
+import api.Message;
+import api.responses.GameListResponse;
+import services.storage.GameRepository;
+
 
 public class GameEndpoint
 {
@@ -46,10 +50,8 @@ public class GameEndpoint
     // TODO Auto-generated method stub
     return null;
   }
-
-  private String doGameList(Request req, Response res) {
-    return "Hi Gregor";
-  }
+ 
+  private Message<GameListResponse.Payload> doGameList(Request req, Response res) { return GameListResponse.Success(GameRepository.instance.getContents()); }
   
 
 }

@@ -9,7 +9,7 @@ Game/
 
 	Join	- GET => Client Id, Game id		-> Returns new Map & Units
 	Leave	- GET => Client Id, Game Id
-	Create	- GET => 
+	Create	- GET => Client Id
 
 
 Player/
