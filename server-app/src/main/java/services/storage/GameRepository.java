@@ -55,7 +55,7 @@ public class GameRepository implements Repository<Game>
   
   
    
-  private Game getById(String aId)
+  public synchronized Game getById(String aId)
   {
     for(Game g : iGames)
     {

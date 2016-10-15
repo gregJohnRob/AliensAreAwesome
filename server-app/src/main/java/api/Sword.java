@@ -9,7 +9,7 @@ public class Sword extends Unit {
   }
   
   @Override
-  public boolean attack(Unit enemy) {
+  public int attack(Unit enemy) {
     int damage = 0;
     if (enemy instanceof Spear) {
       damage = new Double(this.getDamage() * Unit.ADVANTAGE_MOD).intValue();
@@ -18,6 +18,6 @@ public class Sword extends Unit {
     }
     enemy.setHealth(enemy.getHealth() - damage);
     this.setCanAttack(false);
-    return enemy.isDead();
+    return damage;
   }
 }

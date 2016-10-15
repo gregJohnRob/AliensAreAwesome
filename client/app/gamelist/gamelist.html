@@ -2,7 +2,7 @@
   <h1>My Games</h1>
 </div>
 
-<div class="col-xs-12" ng-show="vm.myGames" ng-repeat="game in vm.myGames">
+<div class="col-xs-12"  ng-repeat="game in vm.myGames">
   <div class="col-xs-2">
     {{game.id}}
   </div>
@@ -12,7 +12,7 @@
   <div class="col-xs-2">
     current Players: {{game.currentplayers}} \ {{game.maxplayer}}
   </div>
-  <div ng-click="vm.joingame(game.id)" class="col-xs-4">
+  <div ng-click="vm.joingame(game.id)" class="col-xs-4 btn btn-default">
     Join game
   </div>
 </div>
@@ -21,21 +21,21 @@
   <h1>All Games</h1>
 </div>
 
-<div class="col-xs-12" ng-show="vm.allgames" ng-repeat="game in vm.allgames">
-  <div class="col-xs-8">
-    {{game}}
+<div class="col-md-12"  ng-repeat="game in vm.allgames">
+  <div class="col-md-4">
+    {{ game.Id }}
   </div>
-  <div class="col-xs-2">
-    type: {{game.type}}
+  <div class="col-md-2">
+    type: {{ game.type }}
   </div>
-  <div class="col-xs-2">
-    current Players: {{game.currentplayers}} \ {{game.maxplayer}}
+  <div class="col-md-2">
+    current Players: {{game.CurrentPlayers}} \ {{game.MaxPlayers}}
   </div>
-  <div ng-click="vm.joingame(game.id)" class="col-xs-4">>
+  <div ng-click="vm.joingame(game.id)" class="col-md-4 btn btn-default">
     Join game
   </div>
 </div>
 
-<div ng-click="vm.create()" class="col-xs-12 btn btn-classic">
+<div ng-click="vm.create()" class="col-xs-12 btn btn-default">
   Create a Game
 </div>
