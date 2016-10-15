@@ -34,7 +34,7 @@ public class PlayerStatus
       int x = new Double(p.getX()).intValue();
       int y = new Double(p.getY()).intValue();
       Unit enemy = iMap.unitAtPoint(aX, aY);
-      if (unit.getRange() >= GameMap.distanceBetween(aX, aY, x, y)) {
+      if (unit.getRange() >= GameMap.distanceBetween(aX, aY, x, y) && unit.getCanAttack()) {
         boolean dead = unit.attack(enemy);
         if (dead) {
           iMap.removeUnit(enemy);
@@ -51,13 +51,20 @@ public class PlayerStatus
   
   public synchronized boolean waitOn(String aUnit)
   {
-    return false;
+    Unit unit = iUnits.get(aUnit);
+    if (unit == null) {
+      return false;
+    }
+    unit.endTurn();
+    return true;
   }
   
   
   public synchronized void beginTurn()
   {
-    // TODO 
+    for (String id : iUnits.keySet()) {
+      iUnits.get(id).startTurn();
+    }
   }
   
   

@@ -4,7 +4,6 @@ package api;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.lang.Math;
 
 /* GameMap -> Deals with the Map of the Game
@@ -13,8 +12,6 @@ public class GameMap
 {
   public static final int MAP_SIZE_W = 50;
   public static final int MAP_SIZE_H = 50;
-
-  public static final String[] SEEDS = {"plains"};
   
   private MapElement[][] board;
   private Map<Unit, Point> units;
