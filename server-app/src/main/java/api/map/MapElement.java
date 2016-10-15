@@ -1,4 +1,4 @@
-package api;
+package api.map;
 
 /*
  * MapaElement -> Deals with the elements of a map.
