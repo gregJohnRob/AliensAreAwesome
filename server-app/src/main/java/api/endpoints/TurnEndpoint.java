@@ -12,12 +12,11 @@ public class TurnEndpoint
   
   public TurnEndpoint(Gson aGson)
   {
-    get (String.format("%s/%s", ENDPOINT_BASE_STR, "mine"),   (req, res) -> doTurnMine(req, res), aGson::toJson);
-    
-    post(String.format("%s/%s", ENDPOINT_BASE_STR, "end"),    (req, res) -> doTurnEnd(req, res), aGson::toJson);
-    post(String.format("%s/%s", ENDPOINT_BASE_STR, "move"),   (req, res) -> doTurnMove(req, res), aGson::toJson);
-    post(String.format("%s/%s", ENDPOINT_BASE_STR, "wait"),   (req, res) -> doTurnWait(req, res), aGson::toJson);
-    post(String.format("%s/%s", ENDPOINT_BASE_STR, "attack"), (req, res) -> doTurnAttack(req, res), aGson::toJson);
+    get (String.format("%s/%s", ENDPOINT_BASE_STR, "mine"),   (req, res) -> doTurnMine(req, res), aGson::toJson);   
+    get (String.format("%s/%s", ENDPOINT_BASE_STR, "end"),    (req, res) -> doTurnEnd(req, res), aGson::toJson);
+    get (String.format("%s/%s", ENDPOINT_BASE_STR, "move"),   (req, res) -> doTurnMove(req, res), aGson::toJson);
+    get (String.format("%s/%s", ENDPOINT_BASE_STR, "wait"),   (req, res) -> doTurnWait(req, res), aGson::toJson);
+    get (String.format("%s/%s", ENDPOINT_BASE_STR, "attack"), (req, res) -> doTurnAttack(req, res), aGson::toJson);
   }
 
   

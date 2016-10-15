@@ -23,8 +23,7 @@ public class PlayerEndpoint
     iPlayerRepo = aPlayerRepo;
     
     get (String.format("%s/%s", ENDPOINT_BASE_STR, "game"),  (req, res) -> doPlayerGame(req, res), aGson::toJson);
-    
-    post(String.format("%s/%s", ENDPOINT_BASE_STR, "login"), (req, res) -> doPlayerLogin(req, res), aGson::toJson);  
+    get (String.format("%s/%s", ENDPOINT_BASE_STR, "login"), (req, res) -> doPlayerLogin(req, res), aGson::toJson);  
   }
 
   private Message<String> doPlayerLogin(Request req, Response res)
