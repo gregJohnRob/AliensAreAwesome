@@ -1,7 +1,7 @@
 (function(){
-  angular.$inject = ['$routeParams', 'gamelistService']
+  angular.$inject = ['$routeParams', 'gamelistService', '$location']
   angular.module('app').controller('gamelistController', gamelistController);
-  function gamelistController($routeParams, gamelistService){
+  function gamelistController($routeParams, gamelistService, $location){
     var vm = this;
     vm.joingame = joingame;
     vm.create = create;
@@ -13,14 +13,12 @@
       vm.mygames = gamelistService.mygames(vm.userid);
       gamelistService.allgames().$promise.then(function(promise) {
         vm.allgames = promise.Data.Entries;
-        console.log(promise);
       });
-      console.log(vm.mygames);
-      console.log(vm.allgames)
     }
 
     function joingame(id){
-      var view = "/game/"+ id + "/" + vm.userid;
+      console.log("hi");
+      var view = "game/"+ id + "/" + vm.userid;
       $location.path(view);
     }
 

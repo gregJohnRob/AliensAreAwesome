@@ -1,0 +1,153 @@
+/* Add some margin to the page and set a default font and colour */
+
+body {
+  font-family: "Georgia", serif;
+  line-height: 1.8em;
+  color: #333;
+}
+
+
+/* Main content area */
+
+#content {
+  margin: 80px 70px;
+  text-align: center;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Header/footer boxes */
+
+.wideBox {
+  clear: both;
+  text-align: center;
+  margin: 70px;
+  padding: 10px;
+  background: #ebedf2;
+  border: 1px solid #333;
+}
+
+.wideBox h1 {
+  font-weight: bold;
+  margin: 20px;
+  color: #666;
+  font-size: 1.5em;
+}
+
+/* Slots for final card positions */
+
+#atom_destination {
+  margin: 20px auto 0 auto;
+  background: #ddf;
+}
+
+/* The initial pile of unsorted cards */
+
+#atom_home {
+  margin: 0 auto;
+  background: #ffd;
+}
+
+#atom_destination, #atom_home {
+  width: 100%;
+  height: 150px;
+  padding: 20px;
+  border: 2px solid #333;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+  box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+}
+
+/* Individual cards and slots */
+
+#atom_destination .atom_dest, #atom_home div {
+  float: left;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  padding-top: 35px;
+  border: 2px solid #333;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  margin-left: 15px;
+  background: #fff;
+  text-align: center;
+  user-select: none;
+}
+
+#atom_destination div:first-child, #atom_home div:first-child {
+  margin-left: 0;
+}
+
+#atom_destination div.hovered {
+  background: #aaa;
+}
+
+#atom_home div {
+  background: #666;
+  color: #fff;
+  font-size: 50px;
+  text-shadow: 0 0 3px #000;
+}
+
+#atom_home div.ui-draggable-dragging {
+  -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+  box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+}
+
+/* Individually coloured cards */
+
+#cardO.correct { background: #6F6; }
+#cardH.correct { background: #DDD; }
+#cardN.correct { background: #66F; }
+#cardC.correct { background: #333; }
+
+
+/* "You did it!" message */
+#successMessage {
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  width: 400px;
+  margin-left: -200px;
+  height: 150px;
+  z-index: 100;
+  background: #dfd;
+  border: 2px solid #333;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: .5em .5em .5em rgba(0, 0, 0, .8);
+  -webkit-box-shadow: .5em .5em .5em rgba(0, 0, 0, .8);
+  box-shadow: .5em .5em .5em rgba(0, 0, 0, .8);
+  padding: 20px;
+  text-align: center;
+}
+
+.atom_dest {
+  position: absolute;
+}
+
+.game_section {
+  padding: 20px 0;
+}
+
+
+.magic_line {
+    position: absolute; /* allows to position it anywhere */
+    width: 3px; /* your chosen line width */
+    background-color: #444; /* line color */
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+    /* transform-origin sets rotation around top left (instead of the geometrical center) */
+    height: 47px;
+}
