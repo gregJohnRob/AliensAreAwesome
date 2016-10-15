@@ -11,16 +11,23 @@
     function activate(){
       vm.userid = $routeParams.userid;
       vm.mygames = gamelistService.mygames(vm.userid);
-      vm.allgames = gamelistService.allgames()
+      gamelistService.allgames().$promise.then(function(promise) {
+        vm.allgames = promise.Data.Entries;
+        console.log(promise);
+      });
+      console.log(vm.mygames);
+      console.log(vm.allgames)
     }
 
     function joingame(id){
-      var view = "/game/"+ id;
+      var view = "/game/"+ id + "/" + vm.userid;
       $location.path(view);
     }
 
     function create(){
-      gamelistService.create();
+      gamelistService.create().then(function(id){
+        joingame(id);
+      })
     }
   }
 })()

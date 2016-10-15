@@ -5,8 +5,6 @@ import java.util.List;
 
 import api.Game;
 import api.Message;
-import api.responses.PlayerGameResponse.Payload;
-import api.responses.PlayerGameResponse.PayloadEntry;
 
 public class GameListResponse
 {
@@ -34,7 +32,7 @@ public class GameListResponse
     {
       Id = aGame.getId();
       Type = aGame.getMap().getType();
-      CurrentPlayers = aGame.getPlayers().size();
+      CurrentPlayers = aGame.getCurrentPlayers();
       MaxPlayers = 2;      
     }
   }

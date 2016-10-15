@@ -30,7 +30,7 @@ public class PlayerGameResponse
     {
       Id = aGame.getId();
       Type = aGame.getMap().getType();
-      CurrentPlayers = aGame.getPlayers().size();
+      CurrentPlayers = aGame.getCurrentPlayers();
       MaxPlayers = 2;      
     }
   }
